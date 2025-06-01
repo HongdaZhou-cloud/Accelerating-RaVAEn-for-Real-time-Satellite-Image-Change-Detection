@@ -706,8 +706,54 @@ void linear(data_t out3[NUM3][OUT_SIZE3][OUT_SIZE3],  // Stage 6: FC_Change
 		data_t sum132 = 0;
 		data_t sum133 = 0;
 
-		int count = 0;
-		channel: for (int i = 0; i < NUM3; i=i+2) {    
+		// int count = 0;  // use this for synthesis and implementation
+		// channel: for (int i = 0; i < NUM3; i=i+2) {
+		// 	sum000 += out3[i][0][0] * mu_weights[t][count];
+		// 	sum010 += out3[i][0][1] * mu_weights[t][count+1];
+		// 	sum020 += out3[i][0][2] * mu_weights[t][count+2];
+		// 	sum030 += out3[i][0][3] * mu_weights[t][count+3];
+
+		// 	sum001 += out3[i][1][0] * mu_weights[t][count+4];
+		// 	sum011 += out3[i][1][1] * mu_weights[t][count+5];
+		// 	sum021 += out3[i][1][2] * mu_weights[t][count+6];
+		// 	sum031 += out3[i][1][3] * mu_weights[t][count+7];
+
+		// 	sum002 += out3[i][2][0] * mu_weights[t][count+8];
+		// 	sum012 += out3[i][2][1] * mu_weights[t][count+9];
+		// 	sum022 += out3[i][2][2] * mu_weights[t][count+10];
+		// 	sum032 += out3[i][2][3] * mu_weights[t][count+11];
+
+
+		// 	sum003 += out3[i][3][0] * mu_weights[t][count+12];
+		// 	sum013 += out3[i][3][1] * mu_weights[t][count+13];
+		// 	sum023 += out3[i][3][2] * mu_weights[t][count+14];
+		// 	sum033 += out3[i][3][3] * mu_weights[t][count+15];
+
+		// 	sum100 += out3[i+1][0][0] * mu_weights[t][count+16];
+		// 	sum110 += out3[i+1][0][1] * mu_weights[t][count+17];
+		// 	sum120 += out3[i+1][0][2] * mu_weights[t][count+18];
+		// 	sum130 += out3[i+1][0][3] * mu_weights[t][count+19];
+
+		// 	sum101 += out3[i+1][1][0] * mu_weights[t][count+20];
+		// 	sum111 += out3[i+1][1][1] * mu_weights[t][count+21];
+		// 	sum121 += out3[i+1][1][2] * mu_weights[t][count+22];
+		// 	sum131 += out3[i+1][1][3] * mu_weights[t][count+23];
+
+		// 	sum102 += out3[i+1][2][0] * mu_weights[t][count+24];
+		// 	sum112 += out3[i+1][2][1] * mu_weights[t][count+25];
+		// 	sum122 += out3[i+1][2][2] * mu_weights[t][count+26];
+		// 	sum132 += out3[i+1][2][3] * mu_weights[t][count+27];
+
+		// 	sum103 += out3[i+1][3][0] * mu_weights[t][count+28];
+		// 	sum113 += out3[i+1][3][1] * mu_weights[t][count+29];
+		// 	sum123 += out3[i+1][3][2] * mu_weights[t][count+30];
+		// 	sum133 += out3[i+1][3][3] * mu_weights[t][count+31];
+
+		// 	count += 32;
+		// }
+
+		int count = 0;   // use this for C simulation in Vitis HLS
+		channel: for (int i = 0; i < NUM3; i=i+2) {     
 			sum000 += out3[i][0][0] * (ap_fixed <26,2>)mu_weights[t][count];    // one MAC
 			sum010 += out3[i][0][1] * (ap_fixed <26,2>)mu_weights[t][count+1];
 			sum020 += out3[i][0][2] * (ap_fixed <26,2>)mu_weights[t][count+2];
